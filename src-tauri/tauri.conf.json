@@ -1,0 +1,10 @@
+{
+  "$schema":"https://schema.tauri.app/config/2",
+  "productName":"QA Lab Launcher",
+  "version":"0.2.0",
+  "identifier":"com.qalab.launcher",
+  "build":{"beforeDevCommand":"npm run dev","devUrl":"http://localhost:1420","beforeBuildCommand":"npm run build","frontendDist":"../dist"},
+  "app":{"windows":[{"title":"QA Lab Launcher","width":1120,"height":760,"minWidth":760,"minHeight":580,"center":true}],"security":{"csp":"default-src 'self'; connect-src ipc: http://ipc.localhost; img-src 'self' https://avatars.githubusercontent.com https://raw.githubusercontent.com data:; style-src 'self' 'unsafe-inline'"}},
+  "bundle":{"active":true,"targets":"nsis","createUpdaterArtifacts":true,"windows":{"nsis":{"installMode":"currentUser"}},"icon":["icons/icon.ico"]},
+  "plugins":{"updater":{"pubkey":"dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDEzMjIyQzc1REZFMjI0QUQKUldTdEpPTGZkU3dpRTFQYzhCSi9RWTluQzBGQUVpYVdHWFR0VitydUp1WkhQOXpDLzE5Tm40bHYK","endpoints":["https://github.com/NoobFman/qa-lab-launcher/releases/latest/download/latest.json"],"windows":{"installMode":"passive"}}}
+}
