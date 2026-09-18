@@ -1,6 +1,6 @@
 [package]
 name = "qa-lab-launcher"
-version = "0.2.0"
+version = "0.3.0"
 description = "A friendly launcher for QA tools distributed through GitHub"
 authors = ["QA Lab"]
 edition = "2021"

@@ -1,0 +1,1 @@
+.content{min-height:calc(100vh - 72px)}.card.aliveNudge{animation:cardNudge .5s ease}@keyframes cardNudge{25%{transform:rotate(.35deg) translateY(-1px)}65%{transform:rotate(-.25deg)}}@media(prefers-reduced-motion:reduce){.card.aliveNudge{animation:none!important}}

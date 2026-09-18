@@ -95,6 +95,14 @@ WhitelistingTool-win-x64.zip.sha256   # opzionale ma consigliato
 
 La selezione è deterministica: tra gli asset della `latest release`, il launcher prende il primo ZIP il cui nome termina con `asset.pattern`. Per evitare ambiguità, pubblicare un solo asset per quel suffisso. La versione remota è sempre il tag della release; il campo `version` non appartiene al manifest.
 
+## QA Lab Alive
+
+La home include un layer ambientale opzionale con gli undici membri del QA Lab. Alla prima apertura viene richiesto **WHO ARE YOU?**; la scelta, lo stato ON/OFF e gli easter egg scoperti sono salvati localmente nel browser WebView del launcher.
+
+Il modulo è isolato in `src/features/lab-alive`: configurazione personaggi, relazioni, simulazione, persistenza e rendering sono separati dalla logica GitHub. Gli avatar lavorano in una fascia libera della home, non modificano lo stato delle card e sospendono la simulazione quando la finestra non è visibile. Il pulsante **Alive** permette di disabilitare la funzione o cambiare personaggio. `prefers-reduced-motion` disattiva chase, shake e animazioni continue.
+
+Easter egg: cinque click su Fabio attivano temporaneamente **SABBIO MODE**.
+
 ## Limiti intenzionali della V1
 
 - solo pacchetti ZIP Windows x64;

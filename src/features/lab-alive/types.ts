@@ -1,0 +1,9 @@
+export type CharacterId='arianna'|'stucchi'|'pulici'|'andrea'|'jafer'|'priscilla'|'umberto'|'luca'|'emanuele'|'john'|'fabio';
+export type CharacterState='IDLE'|'WALK'|'RUN'|'WORK'|'TALK'|'DRINK'|'SMOKE'|'PHONE'|'MUSIC'|'SLEEP'|'CHASE'|'SPECIAL';
+export type RelationKind='HIGH'|'SOCIAL'|'CHAOTIC'|'CHASE'|'BUSY';
+export interface Appearance{skin:string;hair:string;shirt:string;accent:string;height:number;hairStyle:'long'|'short'|'curly'|'sparse';glasses?:boolean;beard?:boolean;headphones?:boolean;}
+export interface CharacterConfig{id:CharacterId;name:string;shortName:string;appearance:Appearance;speed:number;preferred:CharacterState[];phrases:string[];signature:string;}
+export interface Relationship{from:CharacterId;to:CharacterId;kind:RelationKind;weight:number;}
+export interface Actor{id:CharacterId;x:number;y:number;tx:number;ty:number;state:CharacterState;facing:-1|1;until:number;bubble?:string;bubbleUntil?:number;lastEvent:number;clicks:number;}
+export interface AlivePrefs{enabled:boolean;selectionComplete:boolean;selectedCharacter:CharacterId|null;discoveredEasterEggs:string[];}
+export interface Bounds{width:number;height:number;}
