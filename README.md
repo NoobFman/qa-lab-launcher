@@ -6,11 +6,13 @@ Launcher desktop Windows per distribuire tool QA tramite repository e GitHub Rel
 
 - login GitHub OAuth Device Flow, senza PAT o client secret;
 - catalogo derivato da tutte le repository visibili all'utente (incluse private, collaborazioni e organizzazioni);
+- aggiornamento automatico del catalogo a ogni avvio, con pulsante per forzare un nuovo controllo;
 - repository senza manifest ignorate dalla vista principale e conteggiate come “non configurate”;
 - rilevamento automatico di `Not installed`, `Updated`, `Update available`;
 - download autenticato della latest release, estrazione ZIP sicura, verifica SHA-256 opzionale;
 - installazioni versionate in `%LOCALAPPDATA%\QALab\tools\<repo>\<tag>` (le vecchie versioni restano disponibili per un futuro rollback);
 - registro locale in `%LOCALAPPDATA%\QALab\registry.json` e log in `%LOCALAPPDATA%\QALab\logs\launcher.log`.
+- aggiornamento automatico e firmato del launcher tramite la latest GitHub Release, senza reinstallazione manuale.
 
 ## Prerequisiti di sviluppo
 
@@ -49,6 +51,12 @@ npm run tauri build
 ```
 
 L'installer NSIS per utente viene creato sotto `src-tauri\target\release\bundle\nsis`. Per una release aziendale è consigliata la firma del binario e dell'installer con il certificato code-signing dell'organizzazione.
+
+## Pubblicare un aggiornamento del launcher
+
+Il workflow `.github/workflows/release.yml` crea automaticamente installer, firma e `latest.json` quando viene pubblicato un tag `v*`. La chiave privata dell'updater deve essere configurata una sola volta nel repository come secret GitHub Actions `TAURI_SIGNING_PRIVATE_KEY`; non deve mai essere committata.
+
+Per distribuire una nuova versione, aggiornare la versione in `package.json`, `src-tauri/Cargo.toml` e `src-tauri/tauri.conf.json`, quindi creare e pubblicare il tag corrispondente, per esempio `v0.2.1`. All'avvio il launcher controlla `https://github.com/NoobFman/qa-lab-launcher/releases/latest/download/latest.json`, scarica il pacchetto firmato e avvia l'installazione in modalità passiva.
 
 ## Rendere compatibile una repository
 
@@ -91,7 +99,7 @@ La selezione è deterministica: tra gli asset della `latest release`, il launche
 
 - solo pacchetti ZIP Windows x64;
 - nessun rollback nella UI (le versioni precedenti vengono però conservate);
-- aggiornamenti manuali tramite pulsante, senza servizio in background;
+- il controllo degli aggiornamenti avviene all'avvio, non tramite un servizio residente in background;
 - massimo 2.000 repository per account (20 pagine GitHub da 100).
 
 ## Verifica
